@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
-	"fmt"
 	"github.com/yvasiyarov/swagger/markup"
 	"github.com/yvasiyarov/swagger/parser"
 	"go/ast"
@@ -34,13 +33,7 @@ var apiDescriptionsJson = {{apiDescriptions}}
 
 // It must return true if funcDeclaration is controller. We will try to parse only comments before controllers
 func IsController(funcDeclaration *ast.FuncDecl) bool {
-	if funcDeclaration.Recv != nil && len(funcDeclaration.Recv.List) > 0 {
-		if starExpression, ok := funcDeclaration.Recv.List[0].Type.(*ast.StarExpr); ok {
-			receiverName := fmt.Sprint(starExpression.X)
-			return strings.Index(receiverName, "Context") != -1 || strings.Index(receiverName, "Controller") != -1
-		}
-	}
-	return false
+	return true
 }
 
 func generateSwaggerDocs(parser *parser.Parser) {

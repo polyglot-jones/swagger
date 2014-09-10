@@ -23,8 +23,8 @@ The purpose of each annotation should be self-explanatory.
 They are all optional, although using at least @Title and @Description is highly recommended.
 
     // @APIVersion 1.0.0
-    // @Title My Cool API
-    // @Description My API usually works as expected. But sometimes its not true
+    // @APITitle My Cool API
+    // @APIDescription My API usually works as expected. But sometimes its not true
     // @Contact api@contact.me
     // @TermsOfServiceUrl http://google.com/
     // @License BSD
@@ -117,8 +117,16 @@ Quick Start Guide
 -----------------
 
 1. Add comments to your API source code.
-2. Run generator API:
-    `go run generator.go -apiPackage="my_cool_api" -mainApiFile="my_cool_api/web/main.go" -basePath="http://127.0.0.1:3000"`
+
+2. Download and build the generator (one time):
+    `git clone https://github.com/yvasiyarov/swagger.git $GOPATH/src/github.com/yvasiyarov/swagger`
+    `cd $GOPATH/src/github.com/yvasiyarov/swagger`
+    `go install`
+
+3. Run the generator:
+    `$GOPATH/bin/generator -apiPackage="my_cool_api" -mainApiFile="my_cool_api/web/main.go" -basePath="http://127.0.0.1:3000"`
+
+    (See also the generate_XXX_docs.sh examples.)
 
     Command line switches are:
     * -apiPackage  - package with API controllers implementation
@@ -138,11 +146,11 @@ Quick Start Guide
 
     If -format="confluence", then a the API documentation will be saved in a single file using Atlassian's Confluence wiki syntax. Use -output to specify the fully qualified filename for the MarkDown file. (The default is API.confluence in the current directory).
 
-3. To run the generated swagger UI (assuming you used -format="go"), copy/move the generated docs.go file to a new folder under GOPATH/src. Also bring in the web.go-example file, renaming it to web.go. Then:
+4. To run the generated swagger UI (assuming you used -format="go"), copy/move the generated docs.go file to a new folder under GOPATH/src. Also bring in the web.go-example file, renaming it to web.go. Then:
 
     `go run web.go docs.go`
 
-4. Enjoy it :-)
+Enjoy it :-)
 
 
 TODO
